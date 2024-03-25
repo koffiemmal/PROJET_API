@@ -4,17 +4,13 @@ const cors = require("cors")
 
 const app = express()
 
-const elevesRoute = require("./routes/elevesRoute")
+const ApiRoute = require("./routes/ApiRoute")
 
 app.use(express.json())
 
 app.use(cors())
 
-/* app.use('/api/test',(req,res)=>{
-    res.status(200).json({message:"mon serveur est operationnel"})
-}) */
-
-app.use("/eleves",elevesRoute)
+app.use("/api",ApiRoute)
 
 console.log("mon serveur est operationnel")
 
