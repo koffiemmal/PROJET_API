@@ -5,11 +5,17 @@ const elevesController = require("../controller/elevesController")
 
 const absenceController = require("../controller/absencesController")
 
+const statistiquesController = require("../controller/statistiquesController")
+
 router.post("/ajoutEleves",elevesController.ajoutEleves)
 
 router.post("/nouvelAbsence",absenceController.nouvelAbsence)
 
 router.post("/listesAbsencesEleves",absenceController.listesAbsencesEleves)
+
+router.post("/statEleves",statistiquesController.statEleves)
+
+router.post("/statClasse",statistiquesController.statClasse)
 
 router.get("/listesAbsences",absenceController.listesAbsences)
 
