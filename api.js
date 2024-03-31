@@ -1,7 +1,5 @@
 const express = require("express")
 
-const session = require("express-session")
-
 const cors = require("cors")
 
 const app = express()
@@ -11,10 +9,8 @@ const database = require("./config/mysql")
 const bcrypt = require("bcrypt")
 
 const jwt = require("jsonwebtoken")
-const ApiRoute = require("./routes/ApiRoute")
-/* 
 
-const LoginRoute = require("./routes/UtilisateurRoute") */
+const ApiRoute = require("./routes/ApiRoute")
 
 const bodyParser = require('body-parser');
 
@@ -23,23 +19,32 @@ const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express")
 
 
-app.use(session({
-    secret: "session-secret",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }));
-
-
-
-
-  
   app.use(bodyParser.json());
     
     app.use(express.json())
     
     app.use(cors())
 
+    // ajoyter la clé que la connexion vous renvoie (accesstoken)
+
+    // remplacer "" par votre accessToken
+
+    let cleApi = "" // clé genere par l'accessToken
+    
+    const swaggerOptions = {
+        swaggerDefinition:{
+            info:{
+                title:'API de gestion des absences des eleves',
+                version:"1.0.0",
+                description:"Api pour la gestion des absences",
+              },
+              servers:['http://localhost:3000'],//url vers mon api
+          },
+          apis:['./routes/ApiRoute.js']
+      }
+    
+      const swaggerDocs = 
+      swaggerJsdoc(swaggerOptions);
     app.post("/login",(req,res,next)=>{
 
         let sql = "insert into utilisateur (nom,password_user) VALUES(?,?);"
@@ -106,7 +111,7 @@ app.use(session({
 
     app.use("/api",ApiRoute, (req, res, next) => {
         
-        const accessToken = req.session.accessToken;
+        const accessToken = cleApi
         
         if (!accessToken) {
             return res.status(401).json({ error: "Unauthorized" });
@@ -121,21 +126,7 @@ app.use(session({
         }
     }); 
     
-/* app.use("/login",LoginRoute) */
-const swaggerOptions = {
-    swaggerDefinition:{
-        info:{
-            title:'API de gestion des absences des eleves',
-            version:"1.0.0",
-            description:"Api pour la gestion des absences",
-          },
-          servers:['http://localhost:3000'],//url vers mon api
-      },
-      apis:['./routes/ApiRoute.js']
-  }
 
-  const swaggerDocs = 
-  swaggerJsdoc(swaggerOptions);
 
 
 app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(swaggerDocs))
