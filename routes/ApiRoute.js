@@ -10,6 +10,7 @@ const elevesController = require("../controller/elevesController")
 const absenceController = require("../controller/absencesController")
 
 const statistiquesController = require("../controller/statistiquesController")
+const verifyJwt = require("../Middleware/verifyJwt")
 
 /* 
 router.post("/creation",userController.creation)
@@ -105,7 +106,7 @@ router.get('/listesAbsences', absenceController.listesAbsences);
  *       200:
  *         description: Liste de tous les élèves récupérée avec succès
  */
-router.get('/listesEleves', elevesController.listesEleves);
+router.get('/listesEleves',verifyJwt, elevesController.listesEleves);
 
 /**
  * @swagger

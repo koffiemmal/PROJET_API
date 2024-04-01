@@ -1,4 +1,4 @@
-/* 
+
 const database = require("../config/mysql")
 
 const session = require("express-session")
@@ -47,12 +47,10 @@ exports.connexion = (req, res) => {
               if (valid) {
                 let accessToken = jwt.sign(
                   { id_user: result[0].id_user },
-                  "12345678910",
-                  { expiresIn: "168h" }
+                  "123456789",
+                  { expiresIn: "72h" }
                 );
-  
-                req.session.accessToken = accessToken; // Stocker l'accessToken dans la session
-                res.status(200).json({ success: true });
+                res.status(200).json({accessToken})
           
 
               } else {
@@ -70,4 +68,4 @@ exports.connexion = (req, res) => {
       }
     });
   };
-   */
+  
