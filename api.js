@@ -3,11 +3,10 @@ const cors = require("cors");
 const app = express();
 const database = require("./config/mysql");
 const userRoute = require("./routes/UtilisateurRoute");
-const ApiRoute = require("./routes/ApiRoute");
+const ElevesRoute = require("./routes/ElevesRoute");
 const bodyParser = require("body-parser");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const verifyJwt = require("./Middleware/verifyJwt");
 
 app.use(bodyParser.json());
 app.use(express.json());
@@ -20,18 +19,16 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "Api pour la gestion des absences",
     },
-    servers: ["http://localhost:3000"], //url vers mon api
+    servers: ["http://localhost:5000"], //url vers mon api
   },
-  apis: ["./routes/ApiRoute.js"],
+  apis: ["./routes/ElevesRoute.js", "./routes/UtilisateurRoute.js"],
 };
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
-app.use("/login", userRoute);
+app.use(userRoute);
 
-app.use("/api",verifyJwt, ApiRoute);
-
-
+app.use(ElevesRoute);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.listen(3000);
+app.listen(5000);

@@ -1,13 +1,9 @@
 
 const database = require("../config/mysql")
 
-const session = require("express-session")
-
 const bcrypt = require("bcrypt")
 
 const jwt = require("jsonwebtoken") 
-
-const app = require("../api")
 
  exports.creation =(req,res)=>{
 
@@ -45,14 +41,8 @@ exports.connexion = (req, res) => {
           bcrypt.compare(password, result[0].password_user)
             .then((valid) => {
               if (valid) {
-                let accessToken = jwt.sign(
-                  { id_user: result[0].id_user },
-                  "123456789",
-                  { expiresIn: "72h" }
-                );
-                res.status(200).json({accessToken})
-          
-
+                let accessToken = jwt.sign({ id_user: result[0].id_user }, "123456789", { expiresIn: "72h" });
+                res.status(200).json({ accessToken });
               } else {
                 res.status(200).json({ error: "Mot de passe ou nom incorrect" });
               }
