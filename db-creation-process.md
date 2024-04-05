@@ -10,8 +10,8 @@ ENGINE=InnoDB;
 CREATE Table absences(
     id_absences INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     id_eleves int UNSIGNED not NULL,
-    motif_absences VARCHAR(255) NOT NULL,
-    justificatif_absences TEXT,
+    raison VARCHAR(255) NOT NULL,
+    justificatif TEXT,
     date_absences TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     constraint fk_id_eleves FOREIGN KEY (id_eleves) REFERENCES eleves(id_eleves) 
 )

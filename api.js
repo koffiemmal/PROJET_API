@@ -11,18 +11,31 @@ const swaggerUi = require("swagger-ui-express");
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
-
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
       title: "API de gestion des absences des eleves",
       version: "1.0.0",
-      description: "Api pour la gestion des absences",
+      description: "API pour la gestion des absences",
     },
-    servers: ["http://localhost:5000"], //url vers mon api
+    securityDefinitions: {
+      BearerAuth: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+        description: 'Utilisez un jeton Bearer pour accéder à l\'API.'
+      }
+    },
+    schemes: ["http"],
+    servers: ["http://localhost:5000"],
   },
   apis: ["./routes/ElevesRoute.js", "./routes/UtilisateurRoute.js"],
+  // Apply security globally
+  security: [
+    { BearerAuth: [] }
+  ],
 };
+
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
 app.use(userRoute);
@@ -31,4 +44,4 @@ app.use(ElevesRoute);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.listen(5000);
+app.listen( process.env.PORT || 5000);

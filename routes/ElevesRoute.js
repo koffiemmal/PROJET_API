@@ -219,9 +219,12 @@ router.get('/listesAbsences', verifyJwt,elevesController.listesAbsences);
  *     responses:
  *       200:
  *         description: Liste de tous les élèves récupérée avec succès
+
  */
 
+
 router.get('/listesEleves',verifyJwt, elevesController.listesEleves);
+
 /** 
  * @swagger
  * /RechercheEleveId:
