@@ -10,17 +10,7 @@
 
 # Installer les packages :
 
-# cors : npm i cors
-
- # express : npm i express
-
- # jsonwebtoken : npm i jsonwebtoken
-
- # mysql2 : npm i mysql2
-
- # swagger-jsdoc : npm i swagger-jsdoc
-
-# swagger-ui-express : npm i swagger-ui-express
+# npm i (commandes qui installe tous les packages a utiliser )
 
 # OUvrer le terminal dans votre IDE et executer la commande 
 
