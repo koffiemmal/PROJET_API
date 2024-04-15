@@ -2,7 +2,7 @@
 
 #  Installer node sur votre machine
 
-#  Installer xampp et creer votre base de données avec les tables:
+#  avec xampp  ou wampp et creer votre base de données avec les tables:
 
    # database: gestionAbsence
 

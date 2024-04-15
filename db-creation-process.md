@@ -1,4 +1,5 @@
 
+
 CREATE table eleves(
     id_eleves int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nom_eleves VARCHAR(255) NOT NULL,
@@ -21,5 +22,4 @@ create table utilisateur (
     nom VARCHAR(50) UNIQUE NOT NULL,
     password_user VARCHAR(255) NOT NULL
 )
-
 ENGINE=InnoDB;
