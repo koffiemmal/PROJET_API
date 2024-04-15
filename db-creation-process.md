@@ -1,4 +1,4 @@
--- Active: 1711144120392@@127.0.0.1@3306@gestionAbsence
+
 CREATE table eleves(
     id_eleves int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     nom_eleves VARCHAR(255) NOT NULL,
@@ -15,10 +15,11 @@ CREATE Table absences(
     date_absences TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     constraint fk_id_eleves FOREIGN KEY (id_eleves) REFERENCES eleves(id_eleves) 
 )
+;
 create table utilisateur (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50) UNIQUE NOT NULL,
     password_user VARCHAR(255) NOT NULL
 )
-;
+
 ENGINE=InnoDB;

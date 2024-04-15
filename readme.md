@@ -12,7 +12,7 @@
 
 # npm i (commandes qui installe tous les packages a utiliser )
 
-# OUvrer le terminal dans votre IDE et executer la commande 
+# Ouvrer le terminal dans votre IDE et executer la commande 
 
  # assurer vous d'etre dans le reperetoire server  (/server/)
 
